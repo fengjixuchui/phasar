@@ -38,131 +38,129 @@ ICFGTestPlugin::ICFGTestPlugin(ProjectIRDB &IRDB,
                                const vector<string> EntryPoints)
     : ICFGPlugin(IRDB, EntryPoints) {}
 
-bool ICFGTestPlugin::isCallStmt(const llvm::Instruction *stmt) {
-  throw logic_error("Not implemented yet!");
-  return false;
-}
-
-const llvm::Function *
-ICFGTestPlugin::getMethodOf(const llvm::Instruction *stmt) {
-  throw logic_error("Not implemented yet!");
+ICFGTestPlugin::f_t
+ICFGTestPlugin::getFunctionOf(ICFGTestPlugin::n_t stmt) const {
   return nullptr;
 }
 
-vector<const llvm::Instruction *>
-ICFGTestPlugin::getPredsOf(const llvm::Instruction *stmt) {
-  throw logic_error("Not implemented yet!");
+std::vector<ICFGTestPlugin::n_t>
+ICFGTestPlugin::getPredsOf(ICFGTestPlugin::n_t stmt) const {
   return {};
 }
 
-vector<const llvm::Instruction *>
-ICFGTestPlugin::getSuccsOf(const llvm::Instruction *stmt) {
-  throw logic_error("Not implemented yet!");
+std::vector<ICFGTestPlugin::n_t>
+ICFGTestPlugin::getSuccsOf(ICFGTestPlugin::n_t stmt) const {
   return {};
 }
 
-vector<pair<const llvm::Instruction *, const llvm::Instruction *>>
-ICFGTestPlugin::getAllControlFlowEdges(const llvm::Function *fun) {
-  throw logic_error("Not implemented yet!");
+std::vector<std::pair<ICFGTestPlugin::n_t, ICFGTestPlugin::n_t>>
+ICFGTestPlugin::getAllControlFlowEdges(ICFGTestPlugin::f_t fun) const {
   return {};
 }
 
-vector<const llvm::Instruction *>
-ICFGTestPlugin::getAllInstructionsOf(const llvm::Function *fun) {
-  throw logic_error("Not implemented yet!");
+std::vector<ICFGTestPlugin::n_t>
+ICFGTestPlugin::getAllInstructionsOf(ICFGTestPlugin::f_t fun) const {
   return {};
 }
 
-bool ICFGTestPlugin::isExitStmt(const llvm::Instruction *stmt) {
-  throw logic_error("Not implemented yet!");
+bool ICFGTestPlugin::isExitStmt(ICFGTestPlugin::n_t stmt) const {
   return false;
 }
 
-bool ICFGTestPlugin::isStartPoint(const llvm::Instruction *stmt) {
-  throw logic_error("Not implemented yet!");
+bool ICFGTestPlugin::isStartPoint(ICFGTestPlugin::n_t stmt) const {
   return false;
 }
 
-bool ICFGTestPlugin::isFieldLoad(const llvm::Instruction *stmt) {
-  throw logic_error("Not implemented yet!");
+bool ICFGTestPlugin::isFieldLoad(ICFGTestPlugin::n_t stmt) const {
   return false;
 }
 
-bool ICFGTestPlugin::isFieldStore(const llvm::Instruction *stmt) {
-  throw logic_error("Not implemented yet!");
+bool ICFGTestPlugin::isFieldStore(ICFGTestPlugin::n_t stmt) const {
   return false;
 }
 
-bool ICFGTestPlugin::isFallThroughSuccessor(const llvm::Instruction *stmt,
-                                            const llvm::Instruction *succ) {
-  throw logic_error("Not implemented yet!");
+bool ICFGTestPlugin::isFallThroughSuccessor(ICFGTestPlugin::n_t stmt,
+                                            ICFGTestPlugin::n_t succ) const {
   return false;
 }
 
-bool ICFGTestPlugin::isBranchTarget(const llvm::Instruction *stmt,
-                                    const llvm::Instruction *succ) {
-  throw logic_error("Not implemented yet!");
+bool ICFGTestPlugin::isBranchTarget(ICFGTestPlugin::n_t stmt,
+                                    ICFGTestPlugin::n_t succ) const {
   return false;
 }
 
-string ICFGTestPlugin::getMethodName(const llvm::Function *fun) {
-  throw logic_error("Not implemented yet!");
+std::string ICFGTestPlugin::getStatementId(ICFGTestPlugin::n_t stmt) const {
   return "";
 }
 
-const llvm::Function *ICFGTestPlugin::getMethod(const string &fun) {
-  throw logic_error("Not implemented yet!");
+std::string ICFGTestPlugin::getFunctionName(ICFGTestPlugin::f_t fun) const {
+  return "";
+}
+
+void ICFGTestPlugin::print(ICFGTestPlugin::f_t F, std::ostream &OS) const {}
+
+nlohmann::json ICFGTestPlugin::getAsJson(ICFGTestPlugin::f_t F) const {
+  return "";
+}
+
+// ICFG parts
+
+std::set<ICFGTestPlugin::f_t> ICFGTestPlugin::getAllFunctions() const {
+  return {};
+}
+
+ICFGTestPlugin::f_t ICFGTestPlugin::getFunction(const std::string &fun) const {
   return nullptr;
 }
 
-set<const llvm::Instruction *> ICFGTestPlugin::allNonCallStartNodes() {
-  throw logic_error("Not implemented yet!");
+bool ICFGTestPlugin::isCallStmt(ICFGTestPlugin::n_t stmt) const {
+  return false;
+}
+
+bool ICFGTestPlugin::isIndirectFunctionCall(ICFGTestPlugin::n_t stmt) const {
+  return false;
+}
+
+bool ICFGTestPlugin::isVirtualFunctionCall(ICFGTestPlugin::n_t stmt) const {
+  return false;
+}
+
+std::set<ICFGTestPlugin::n_t> ICFGTestPlugin::allNonCallStartNodes() const {
   return {};
 }
 
-set<const llvm::Function *>
-ICFGTestPlugin::getCalleesOfCallAt(const llvm::Instruction *stmt) {
-  throw logic_error("Not implemented yet!");
+std::set<ICFGTestPlugin::f_t>
+ICFGTestPlugin::getCalleesOfCallAt(ICFGTestPlugin::n_t stmt) const {
   return {};
 }
 
-set<const llvm::Instruction *>
-ICFGTestPlugin::getCallersOf(const llvm::Function *fun) {
-  throw logic_error("Not implemented yet!");
+std::set<ICFGTestPlugin::n_t>
+ICFGTestPlugin::getCallersOf(ICFGTestPlugin::f_t fun) const {
   return {};
 }
 
-set<const llvm::Instruction *>
-ICFGTestPlugin::getCallsFromWithin(const llvm::Function *fun) {
-  throw logic_error("Not implemented yet!");
+std::set<ICFGTestPlugin::n_t>
+ICFGTestPlugin::getCallsFromWithin(ICFGTestPlugin::f_t fun) const {
   return {};
 }
 
-set<const llvm::Instruction *>
-ICFGTestPlugin::getStartPointsOf(const llvm::Function *fun) {
-  throw logic_error("Not implemented yet!");
+std::set<ICFGTestPlugin::n_t>
+ICFGTestPlugin::getStartPointsOf(ICFGTestPlugin::f_t fun) const {
   return {};
 }
 
-set<const llvm::Instruction *>
-ICFGTestPlugin::getExitPointsOf(const llvm::Function *fun) {
-  throw logic_error("Not implemented yet!");
+std::set<ICFGTestPlugin::n_t>
+ICFGTestPlugin::getExitPointsOf(ICFGTestPlugin::f_t fun) const {
   return {};
 }
 
-set<const llvm::Instruction *>
-ICFGTestPlugin::getReturnSitesOfCallAt(const llvm::Instruction *stmt) {
-  throw logic_error("Not implemented yet!");
+std::set<ICFGTestPlugin::n_t>
+ICFGTestPlugin::getReturnSitesOfCallAt(ICFGTestPlugin::n_t stmt) const {
   return {};
 }
 
-string ICFGTestPlugin::getStatementId(const llvm::Instruction *stmt) {
-  return llvm::cast<llvm::MDString>(
-             stmt->getMetadata(MetaDataKind)->getOperand(0))
-      ->getString()
-      .str();
-}
+void ICFGTestPlugin::print(std::ostream &OS) const {}
 
-json ICFGTestPlugin::getAsJson() { return json{}; }
+nlohmann::json ICFGTestPlugin::getAsJson() const { return ""_json; }
 
 } // namespace psr
