@@ -47,7 +47,7 @@ target_link_libraries(phasar_clang
   clangASTMatchers
   clangLex
   clangBasic
-
+  LLVMFrontendOpenMP
   ${Boost_LIBRARIES}
 )
 
